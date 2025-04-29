@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <!-- 添加viewport meta标签 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+        <title>凡人修仙传更新日志</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Microsoft YaHei', sans-serif;
+            }
+    
+            body {
+                background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+            }
+    
+            .update-container {
+                background: rgba(255, 255, 255, 0.05);
+                backdrop-filter: blur(10px);
+                border-radius: 20px;
+                padding: 30px;
+                width: 90%;
+                max-width: 800px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                margin: 20px 0;
+            }
+    
+            .version-title {
+                color: #FFD700;
+                font-size: clamp(1.8rem, 5vw, 2.5rem);
+                text-align: center;
+                margin-bottom: 30px;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            }
+    
+            .update-list {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+    
+            .update-item {
+                background: rgba(255, 255, 255, 0.1);
+                padding: 15px;
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                transition: transform 0.3s ease;
+                cursor: pointer;
+            }
+    
+            @media (hover: hover) {
+                .update-item:hover {
+                    transform: translateX(10px);
+                }
+            }
+    
+            .icon {
+                width: 45px;
+                height: 45px;
+                background: linear-gradient(45deg, #FF6B6B, #FFD700);
+                border-radius: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-right: 15px;
+                flex-shrink: 0;
+                font-size: 1.2em;
+            }
+    
+            .content {
+                color: #FFFFFF;
+                flex: 1;
+            }
+    
+            .content h2 {
+                font-size: clamp(1.1rem, 4vw, 1.3rem);
+                margin-bottom: 6px;
+            }
+    
+            .content p {
+                font-size: clamp(0.9rem, 3vw, 1rem);
+                line-height: 1.5;
+            }
+    
+            .highlight {
+                color: #FFD700;
+                font-weight: bold;
+                word-break: keep-all;
+            }
+    
+            .time-range {
+                color: #FF6B6B;
+                font-size: clamp(0.8rem, 3vw, 0.9rem);
+                margin: 8px 0;
+            }
+    
+            /* 移动端优化 */
+            @media (max-width: 768px) {
+                body {
+                    padding: 10px;
+                    align-items: flex-start;
+                }
+    
+                .update-container {
+                    padding: 20px;
+                    border-radius: 15px;
+                }
+    
+                .update-item {
+                    padding: 12px;
+                    flex-direction: row;
+                    align-items: flex-start;
+                }
+    
+                .icon {
+                    width: 40px;
+                    height: 40px;
+                    margin-right: 12px;
+                }
+            }
+    
+            /* 触屏设备优化 */
+            @media (pointer: coarse) {
+                .update-item {
+                    transition: none;
+                }
+            }
+        </style>
+    </head>
+<body>
+    <div class="update-container">
+        <h1 class="version-title">Version 1.2.8.0 更新公告</h1>
+        
+        <div class="update-list">
+            <div class="update-item">
+                <div class="icon">🎁</div>
+                <div class="content">
+                    <h2>斗破寻宝限时开启</h2>
+                    <div class="time-range">【4.29-5.5】</div>
+                    <p>全新限时活动开启，稀有道具等你来寻！</p>
+                </div>
+            </div>
+
+            <div class="update-item">
+                <div class="icon">💥</div>
+                <div class="content">
+                    <h2>全新技能上线</h2>
+                    <p>SSS级技能<span class="highlight">【大天造化掌】</span>震撼登场！</p>
+                </div>
+            </div>
+
+            <div class="update-item">
+                <div class="icon">🎉</div>
+                <div class="content">
+                    <h2>五一福利节开启</h2>
+                    <div class="time-range">【5.1-5.5】</div>
+                    <p>每日签到可得
+                        <span class="highlight">双倍灵石</span>+
+                        <span class="highlight">斗破夺宝券×1</span>，
+                        <span class="highlight">惊喜神秘奖励</span>！
+                    </p>
+                </div>
+            </div>
+
+            <div class="update-item">
+                <div class="icon">🛒</div>
+                <div class="content">
+                    <h2>商城新品上架</h2>
+                    <p>限时售卖<span class="highlight">【斗破寻宝券】</span>助力寻宝之旅！</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
