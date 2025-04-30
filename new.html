@@ -108,6 +108,87 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                font-size: 16px; /* 增大基准字号 */
+            }
+
+            .evolution-system {
+                gap: 120px; /* 增加垂直间距 */
+                margin: 20px 0;
+            }
+
+            .evolution-node {
+                width: 100%;
+                margin: 15px 0;
+            }
+
+            .node-card {
+                padding: 20px 15px;
+                margin: 0 10px;
+            }
+
+            .condition {
+                top: -25px;
+                font-size: 14px; /* 增大条件文字 */
+                padding: 6px 12px;
+                white-space: normal; /* 允许换行 */
+                max-width: 180px;
+                text-align: center;
+            }
+
+            .stage-card {
+                gap: 25px;
+                margin-top: 40px;
+            }
+
+            .stage {
+                padding: 15px;
+                margin: 0 10px;
+            }
+
+            .material-item {
+                font-size: 14px;
+                min-height: 36px; /* 增大触控区域 */
+            }
+
+            .material-icon {
+                font-size: 20px; /* 放大图标 */
+                min-width: 28px; /* 确保图标触控区域 */
+            }
+
+            /* 增加阶段标题响应式 */
+            h3 {
+                font-size: 18px;
+                margin: 12px 0;
+            }
+
+            /* 优化属性说明换行 */
+            p {
+                line-height: 1.5;
+                word-break: break-word;
+            }
+        }
+
+        /* 超小屏幕优化 */
+        @media (max-width: 480px) {
+            .condition {
+                top: -28px;
+                font-size: 13px;
+                max-width: 140px;
+            }
+
+            .node-card {
+                padding: 18px 12px;
+            }
+
+            .material-item {
+                flex-wrap: wrap; /* 小屏允许换行 */
+                gap: 4px;
+            }
+        }
     </style>
 </head>
 <body>
