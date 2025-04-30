@@ -24,26 +24,7 @@
             padding: 40px 0;
         }
     
-        /* 连接线样式 */
-        .evolution-system::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50px;
-            right: 50px;
-            height: 2px;
-            background: linear-gradient(90deg, #FF6B6B 0%, #FFD700 100%);
-            transform: translateY(-50%);
-            z-index: 0;
-            background: linear-gradient(
-                90deg,
-                #eeeaea 0%,
-                #828281 50%,
-                #282727 100%
-            );
-            background-size: 200% auto;
-            animation: lineFlow 4s linear infinite;
-        }
+        
     
         .evolution-node {
             position: relative;
@@ -309,7 +290,7 @@
                 <div class="evolution-node">
                     <div class="node-card">
                         <h3>一阶·玄铁镇妖塔</h3>
-                        <p>基础防御+300｜镇压成功率+50%</p>
+                        <p>基础减伤率：10%</p>
                     </div>
                 </div>
             
@@ -318,7 +299,7 @@
                     <div class="node-card">
                         <span class="condition">吞噬地脉灵火</span>
                         <h3>二阶·赤炎焚天塔</h3>
-                        <p>火抗+40%｜灼烧伤害200/秒</p>
+                        <p>基础减伤率：25% | 攻击力+50% | 暴击率+10%</p>
                     </div>
                 </div>
             
@@ -327,7 +308,7 @@
                     <div class="node-card">
                         <span class="condition">融合星核碎片</span>
                         <h3>三阶·混元乾坤塔</h3>
-                        <p>全属性+20%｜天雷抗性+30%</p>
+                        <p>基础减伤率：40% | 攻击力+110% | 暴击率+20%</p>
                     </div>
                 </div>
             
@@ -336,86 +317,51 @@
                     <div class="node-card">
                         <h3>最终·三清混元塔</h3>
                         <span class="condition">吸收周天星辰</span>
-                        <p>混沌领域｜造化之力</p>
+                        <p>
+                            基础减伤率：55% | 攻击力+180% | 暴击率+35%
+                        </p>
                     </div>
                 </div>
             </div>
 
+
+            <h2>「三清混元塔」合成系统</h2>
             <div class="stage-card">
                 <div class="stage">
                     <h3>一阶·玄铁镇妖塔</h3>
-                    <p class="highlight">基础防御 +300</p>
-                    <p>镇压成功率 +50%</p>
                     <ul class="material-list">
                         <li class="material-item">
-                            <div class="material-icon">🔥</div>
-                            <span>地脉灵火 ×3</span>
+                            <div class="material-icon">🪙</div>
+                            <span>玄铁精髓</span>
                         </li>
                         <li class="material-item">
-                            <div class="material-icon">⚙️</div>
-                            <span>千年玄铁 ×20</span>
+                            <div class="material-icon">🪙</div>
+                            <span>百年桃木心</span>
+                        </li>
+                        <li class="material-item">
+                            <div class="material-icon">🪙</div>
+                            <span>封妖符</span>
                         </li>
                     </ul>
                 </div>
 
                 <div class="stage">
                     <h3>二阶·赤炎焚天塔</h3>
-                    <p class="highlight">火系抗性 +40%</p>
-                    <p>灼烧伤害 200/秒</p>
                     <ul class="material-list">
-                        <li class="material-item">
-                            <div class="material-icon">🌌</div>
-                            <span>星核碎片 ×1</span>
-                        </li>
-                        <li class="material-item">
-                            <div class="material-icon">❄️</div>
-                            <span>极寒冰魄 ×5</span>
-                        </li>
+                        未开放！
                     </ul>
                 </div>
 
                 <div class="stage">
                     <h3>三阶·混元乾坤塔</h3>
-                    <p class="highlight">全属性 +20%</p>
-                    <p>天雷抗性 +30%</p>
                     <ul class="material-list">
-                        <li class="material-item">
-                            <div class="material-icon">⭐</div>
-                            <span>周天星砂 ×99</span>
-                        </li>
-                        <li class="material-item">
-                            <div class="material-icon">💎</div>
-                            <span>混沌原石 ×3</span>
-                        </li>
+                        未开放！
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        mermaid.initialize({
-            startOnLoad: true,
-            theme: 'dark',
-            flowchart: {
-                curve: 'basis',
-                nodeSpacing: 50,
-                rankSpacing: 100
-            },
-            themeCSS: `
-                .node rect {
-                    fill: rgba(255,215,0,0.15);
-                    stroke: #FFD700;
-                }
-                .edgePath path {
-                    stroke: #FF6B6B;
-                }
-                .edgeLabel {
-                    background: rgba(255,107,107,0.2);
-                    color: #FF6B6B;
-                }
-            `
-        });
-    </script>
+    
 </body>
 </html>
