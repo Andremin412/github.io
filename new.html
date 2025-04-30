@@ -35,13 +35,24 @@
             background: linear-gradient(90deg, #FF6B6B 0%, #FFD700 100%);
             transform: translateY(-50%);
             z-index: 0;
+            background: linear-gradient(
+                90deg,
+                #eeeaea 0%,
+                #828281 50%,
+                #282727 100%
+            );
+            background-size: 200% auto;
+            animation: lineFlow 4s linear infinite;
         }
     
         .evolution-node {
             position: relative;
             z-index: 1;
             width: 200px;
+            animation: nodeEntrance 0.6s ease-out both;
         }
+
+        
     
         .node-card {
             background: rgba(255,215,0,0.15);
@@ -51,6 +62,12 @@
             text-align: center;
             position: relative;
             backdrop-filter: blur(5px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .node-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255,215,0,0.2);
         }
     
         .condition {
@@ -65,8 +82,14 @@
             background: rgba(255,107,107,0.2);
             padding: 4px 8px;
             border-radius: 4px;
+            transition: all 0.3s ease;
         }
     
+        .evolution-node:hover .condition {
+            text-shadow: 0 0 8px rgba(255,107,107,0.6);
+            transform: translateX(-50%) scale(1.05);
+        }
+
         .stage-card {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -78,6 +101,17 @@
             background: rgba(255,255,255,0.1);
             border-radius: 8px;
             padding: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: stageEntrance 0.6s ease forwards;
+            animation-delay: calc(var(--index) * 0.15s);
+        }
+
+        @keyframes stageEntrance {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     
         .material-list {
@@ -91,6 +125,21 @@
             align-items: center;
             gap: 8px;
             margin: 8px 0;
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+
+        .material-item:hover {
+            background: rgba(255,255,255,0.05);
+            transform: translateX(8px);
+        }
+
+        .material-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .material-item:hover .material-icon {
+            animation: iconPulse 0.6s ease;
         }
     
         /* 响应式调整 */
@@ -109,6 +158,7 @@
             }
         }
 
+        /* 移动端优化 */
         @media (max-width: 768px) {
             body {
                 padding: 10px;
@@ -130,6 +180,11 @@
                 margin: 0 10px;
             }
 
+            .node-card:hover {
+                transform: none;
+                box-shadow: none;
+            }
+
             .condition {
                 top: -25px;
                 font-size: 14px; /* 增大条件文字 */
@@ -147,12 +202,24 @@
             .stage {
                 padding: 15px;
                 margin: 0 10px;
+                animation: mobileStageEntrance 0.6s ease forwards;
             }
 
             .material-item {
                 font-size: 14px;
                 min-height: 36px; /* 增大触控区域 */
             }
+
+            .material-item:hover {
+                transform: none;
+                background: none;
+            }
+
+            .material-item:active {
+                background: rgba(255,255,255,0.1);
+                transform: scale(0.98);
+            }
+
 
             .material-icon {
                 font-size: 20px; /* 放大图标 */
@@ -169,6 +236,17 @@
             p {
                 line-height: 1.5;
                 word-break: break-word;
+            }
+
+            @keyframes mobileStageEntrance {
+                from {
+                    opacity: 0;
+                    transform: translateX(-20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
             }
         }
 
@@ -189,6 +267,37 @@
                 gap: 4px;
             }
         }
+
+
+        @keyframes nodeEntrance {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes lineFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes iconPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+        * {
+            animation: none !important;
+            transition: none !important;
+        }
+    }
     </style>
 </head>
 <body>
@@ -199,7 +308,6 @@
                 <!-- 第一阶段 -->
                 <div class="evolution-node">
                     <div class="node-card">
-                        <span class="condition">吞噬地脉灵火</span>
                         <h3>一阶·玄铁镇妖塔</h3>
                         <p>基础防御+300｜镇压成功率+50%</p>
                     </div>
@@ -208,7 +316,7 @@
                 <!-- 第二阶段 -->
                 <div class="evolution-node">
                     <div class="node-card">
-                        <span class="condition">融合星核碎片</span>
+                        <span class="condition">吞噬地脉灵火</span>
                         <h3>二阶·赤炎焚天塔</h3>
                         <p>火抗+40%｜灼烧伤害200/秒</p>
                     </div>
@@ -217,7 +325,7 @@
                 <!-- 第三阶段 -->
                 <div class="evolution-node">
                     <div class="node-card">
-                        <span class="condition">吸收周天星辰</span>
+                        <span class="condition">融合星核碎片</span>
                         <h3>三阶·混元乾坤塔</h3>
                         <p>全属性+20%｜天雷抗性+30%</p>
                     </div>
@@ -227,6 +335,7 @@
                 <div class="evolution-node">
                     <div class="node-card">
                         <h3>最终·三清混元塔</h3>
+                        <span class="condition">吸收周天星辰</span>
                         <p>混沌领域｜造化之力</p>
                     </div>
                 </div>
