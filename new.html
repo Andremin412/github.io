@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三清混元塔进阶系统</title>
+    <style>
+        body {
+            background: #1a1a1a;
+            color: #e4e4e4;
+            font-family: 'Microsoft YaHei', sans-serif;
+            padding: 20px;
+        }
+    
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    
+        .evolution-system {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            padding: 40px 0;
+        }
+    
+        /* 连接线样式 */
+        .evolution-system::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50px;
+            right: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, #FF6B6B 0%, #FFD700 100%);
+            transform: translateY(-50%);
+            z-index: 0;
+        }
+    
+        .evolution-node {
+            position: relative;
+            z-index: 1;
+            width: 200px;
+        }
+    
+        .node-card {
+            background: rgba(255,215,0,0.15);
+            border: 1px solid #FFD700;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+            backdrop-filter: blur(5px);
+        }
+    
+        .condition {
+            display: block;
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #FF6B6B;
+            font-size: 12px;
+            white-space: nowrap;
+            background: rgba(255,107,107,0.2);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+    
+        .stage-card {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+    
+        .stage {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 20px;
+        }
+    
+        .material-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+    
+        .material-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 8px 0;
+        }
+    
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .evolution-system {
+                flex-direction: column;
+                gap: 80px;
+            }
+            
+            .evolution-system::before {
+                display: none;
+            }
+            
+            .stage-card {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="evolution-section">
+            <h2>「三清混元塔」进阶系统</h2>
+            <div class="evolution-system">
+                <!-- 第一阶段 -->
+                <div class="evolution-node">
+                    <div class="node-card">
+                        <span class="condition">吞噬地脉灵火</span>
+                        <h3>一阶·玄铁镇妖塔</h3>
+                        <p>基础防御+300｜镇压成功率+50%</p>
+                    </div>
+                </div>
+            
+                <!-- 第二阶段 -->
+                <div class="evolution-node">
+                    <div class="node-card">
+                        <span class="condition">融合星核碎片</span>
+                        <h3>二阶·赤炎焚天塔</h3>
+                        <p>火抗+40%｜灼烧伤害200/秒</p>
+                    </div>
+                </div>
+            
+                <!-- 第三阶段 -->
+                <div class="evolution-node">
+                    <div class="node-card">
+                        <span class="condition">吸收周天星辰</span>
+                        <h3>三阶·混元乾坤塔</h3>
+                        <p>全属性+20%｜天雷抗性+30%</p>
+                    </div>
+                </div>
+            
+                <!-- 最终阶段 -->
+                <div class="evolution-node">
+                    <div class="node-card">
+                        <h3>最终·三清混元塔</h3>
+                        <p>混沌领域｜造化之力</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stage-card">
+                <div class="stage">
+                    <h3>一阶·玄铁镇妖塔</h3>
+                    <p class="highlight">基础防御 +300</p>
+                    <p>镇压成功率 +50%</p>
+                    <ul class="material-list">
+                        <li class="material-item">
+                            <div class="material-icon">🔥</div>
+                            <span>地脉灵火 ×3</span>
+                        </li>
+                        <li class="material-item">
+                            <div class="material-icon">⚙️</div>
+                            <span>千年玄铁 ×20</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="stage">
+                    <h3>二阶·赤炎焚天塔</h3>
+                    <p class="highlight">火系抗性 +40%</p>
+                    <p>灼烧伤害 200/秒</p>
+                    <ul class="material-list">
+                        <li class="material-item">
+                            <div class="material-icon">🌌</div>
+                            <span>星核碎片 ×1</span>
+                        </li>
+                        <li class="material-item">
+                            <div class="material-icon">❄️</div>
+                            <span>极寒冰魄 ×5</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="stage">
+                    <h3>三阶·混元乾坤塔</h3>
+                    <p class="highlight">全属性 +20%</p>
+                    <p>天雷抗性 +30%</p>
+                    <ul class="material-list">
+                        <li class="material-item">
+                            <div class="material-icon">⭐</div>
+                            <span>周天星砂 ×99</span>
+                        </li>
+                        <li class="material-item">
+                            <div class="material-icon">💎</div>
+                            <span>混沌原石 ×3</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: {
+                curve: 'basis',
+                nodeSpacing: 50,
+                rankSpacing: 100
+            },
+            themeCSS: `
+                .node rect {
+                    fill: rgba(255,215,0,0.15);
+                    stroke: #FFD700;
+                }
+                .edgePath path {
+                    stroke: #FF6B6B;
+                }
+                .edgeLabel {
+                    background: rgba(255,107,107,0.2);
+                    color: #FF6B6B;
+                }
+            `
+        });
+    </script>
+</body>
+</html>
