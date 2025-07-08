@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>凡人修仙传更新日志</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* 版本总容器 */
+        .versions-container {
+            width: 90%;
+            max-width: 1000px;
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+            margin: 40px 0;
+        }
+
+        /* 单个版本容器 */
+        .version-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 版本标题 */
+        .version-title {
+            color: #FFD700;
+            font-size: clamp(1.5rem, 5vw, 2.2rem);
+            margin-bottom: 25px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .version-title::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 80%;
+            background: #FF6B6B;
+            border-radius: 3px;
+        }
+
+        /* 更新列表 */
+        .update-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* 更新项 */
+        .update-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        @media (hover: hover) {
+            .update-item:hover {
+                transform: translateX(10px);
+            }
+        }
+
+        /* 图标样式 */
+        .icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(45deg, #FF6B6B, #FFD700);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+            font-size: 1.2em;
+        }
+
+        /* 内容区域 */
+        .content {
+            color: #FFFFFF;
+            flex: 1;
+        }
+
+        .content h2 {
+            font-size: clamp(1.1rem, 4vw, 1.3rem);
+            margin-bottom: 6px;
+        }
+
+        .content p {
+            font-size: clamp(0.9rem, 3vw, 1rem);
+            line-height: 1.5;
+        }
+
+        /* 高亮文字 */
+        .highlight {
+            color: #FFD700;
+            font-weight: bold;
+            word-break: keep-all;
+        }
+
+        /* 时间范围 */
+        .time-range {
+            color: #FF6B6B;
+            font-size: clamp(0.8rem, 3vw, 0.9rem);
+            margin: 8px 0;
+        }
+
+        /* 移动端优化 */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .versions-container {
+                gap: 25px;
+                width: 95%;
+            }
+
+            .version-container {
+                padding: 20px;
+                border-radius: 15px;
+            }
+
+            .version-title {
+                padding-left: 20px;
+                margin-bottom: 20px;
+            }
+
+            .update-item {
+                padding: 12px;
+                flex-direction: row;
+            }
+
+            .icon {
+                width: 40px;
+                height: 40px;
+                margin-right: 12px;
+            }
+        }
+
+        /* 触屏设备优化 */
+        @media (pointer: coarse) {
+            .update-item {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="versions-container">
+
+        <!-- 版本 2.0.0.2 -->
+         <div class="version-container">
+            <h2 class="version-title">Version 2.0.0.2 更新公告</h2>
+            <div class="update-list">
+
+                <div class="update-item">
+                    <div class="icon">📢</div>
+                    <div class="content">
+                        <h2>底层架构更新</h2>
+                        <p>
+                            本次更新对系统底层架构进行了全面升级，提升了系统的稳定性和性能。<br>
+                            这意味着可能会有一些功能暂时<span class = "highlight">不可用或者出现bug</span>，请及时反馈给我们，我们会在后续版本中逐步恢复和优化这些功能。<br>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="update-item">
+                    <div class="icon">📢</div>
+                    <div class="content">
+                        <h2>小游戏功能下架整改</h2>
+                        <p>
+                            由于新架构下小游戏功能的不稳定性，我们决定下架小游戏功能，将会在后续版本中逐步恢复小游戏功能。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="update-item">
+                    <div class="icon">📢</div>
+                    <div class="content">
+                        <h2>轮回境界调整</h2>
+                        <p>
+                            千世轮回和万世轮回的境界调整为：<span class="highlight">终焉境圆满</span><br>   
+                        </p>
+                    </div>
+                </div>
+
+                <div class="update-item">
+                    <div class="icon">📢</div>
+                    <div class="content">
+                        <h2>更新日志指令更新</h2>
+                        <p>
+                            现在可以通过“更新日志”指令查看更新日志，例如：“更新日志”<br>   
+                        </p>
+                    </div>
+                </div>
+                
+            </div> 
+        </div>
+
+        <!-- 版本 2.0.0.1 -->
+         <div class="version-container">
+            <h2 class="version-title">Version 2.0.0.1 更新公告</h2>
+            <div class="update-list">
+
+                <div class="update-item">
+                    <div class="icon">📢</div>
+                    <div class="content">
+                        <h2>异火功能平衡</h2>
+                        <p>
+                            鉴于道友们对异火功能的反馈，我们对异火的平衡性进行了一些调整：<br>
+                            调整了异火的<span class="highlight">攻击力提升</span>，现在吸收异火后增加的攻击力将为百分比增加，而不是固定增加。<br>
+                            同时我们会回收道友之前吸收异火时获得的攻击力，以保证道友们的攻击力平衡。<br>    
+                            这次调整旨在让异火的使用更加平衡和公平，感谢道友们的理解与支持！<br>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="update-item">
+                    <div class="icon">📢</div>
+                    <div class="content">
+                        <h2>Boss调整</h2>
+                        <p>
+                            自从上次更新后，我们发现有些Boss的刷新频率过快，因此我们对Boss的刷新进行了调整：<br>
+                            <span class="highlight">世界Boss的个数上限</span>：100 -> 30。<br>
+                            <span class="highlight">世界Boss的最大单次刷新个数</span>：10 -> 3。<br>
+                        </p>
+                    </div>
+                </div>
+
+                
+                
+            </div> 
+        </div>
+
+        <!-- 版本 1.2.9.9 -->
+         <div class="version-container">
+            <h2 class="version-title">Version 1.2.9.9 更新公告</h2>
+            <div class="update-list">
+
+                <div class="update-item">
+                    <div class="icon">📢</div>
+                    <div class="content">
+                        <h2>世界BOSS调整</h2>
+                        <p>
+                            调整<span class="highlight">世界BOSS刷新时间</span>：5分钟 -> 10分钟。
+                            <br>
+                            调整<span class="highlight">单次刷新BOSS数量</span>：固定1个 -> 随机1~10个。
+                            <br>
+                            新增<span class="highlight">世界boss清理功能</span>，每20分钟随机清理一部分世界BOSS。
+                            <br>
+                            
+                        </p>
+                    </div>
+                </div>
+
+                
+            </div> 
+        </div>
+
+        <!-- 版本 1.2.9.8 -->
+         <div class="version-container">
+            <h2 class="version-title">Version 1.2.9.8 更新公告</h2>
+            <div class="update-list">
+
+                <div class="update-item">
+                    <div class="icon">⬆️</div>
+                    <div class="content">
+                        <h2>异火平衡性调整</h2>
+                        <p>
+                           我们为<span class="highlight">吸收异火</span>增添了境界限制，现在只有在达到相应境界后才能吸收对应的异火。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="update-item">
+                    <div class="icon">⬆️</div>
+                    <div class="content">
+                        <h2>功能调整</h2>
+                        <p>
+                           调整了一些物品的可见性，现在部分物品在未拥有时查询不可见，但拥有后仍然可以使用。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="update-item">
+                    <div class="icon">⬆️</div>
+                    <div class="content">
+                        <h2>功能调整</h2>
+                        <p>
+                           调整了小游戏获取体力的机制，当获取体力值后超过体力上限时体力值不会溢出。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="update-item">
+                    <div class="icon">⬆️</div>
+                    <div class="content">
+                        <h2>功能优化</h2>
+                        <p>
+                           统一了进行小游戏时的消息形式，现在整体调整为图片形式发送。
+                        </p>
+                    </div>
+                </div> 
+            </div> 
+        </div>
+        
+
+        <!-- 版本 1.2.9.7 -->
+         <div class="version-container">
+            <h2 class="version-title">Version 1.2.9.7 更新公告</h2>
+            <div class="update-list">
+
+                <div class="update-item">
+                    <div class="icon">⬆️</div>
+                    <div class="content">
+                        <h2>功能新增</h2>
+                        <p>
+                           新增功能：<span class="highlight">【小游戏帮助】</span>
+                            <br>
+                            新增小游戏功能，每日签到可获取小游戏次数，进行小游戏可以获得体力值奖励。
+                            <br>
+                            其他详细内容请发送【小游戏帮助】查看。
+                        </p>
+                    </div>
+                </div> 
+            </div> 
+        </div>
+
+        <!-- 版本 1.2.9.6 -->
+         <div class="version-container">
+            <h2 class="version-title">Version 1.2.9.6 更新公告</h2>
+            <div class="update-list">
+
+                <div class="update-item">
+                    <div class="icon">⬆️</div>
+                    <div class="content">
+                        <h2>功能新增</h2>
+                        <p>
+                           新增功能：<span class="highlight">【悟道】</span>
+                            <br>
+                            当道友的修为已经到达极限无法再提升时，不妨试试使用【悟道】来随机重置自己的修为，并获得一定的道具奖励。
+                            <br>
+                            其他详细内容请发送【悟道帮助】查看。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="update-item">
+                    <div class="icon">📢</div>
+                    <div class="content">
+                        <h2>问题修复</h2>
+                        <p>
+                            修复了讨伐Boss时会扣除积分的问题。
+                            <br>
+                            修复了讨伐Boss后气血和真元异常的问题。
+                        </p>
+                    </div>
+                </div>
+
+                
+            </div> 
+        </div>
+
+        <!-- 版本 1.2.9.5 -->
+         <div class="version-container">
+            <h2 class="version-title">Version 1.2.9.5 更新公告</h2>
+            <div class="update-list">
+                
+                <div class="update-item">
+                    <div class="icon">📢</div>
+                    <div class="content">
+                        <h2>问题修复</h2>
+                        <p>
+                            修复了讨伐BOSS在某些情况下会扣除灵石的问题。
+                            <br>
+                            修复了BOSS对战后气血和真元扣除异常的问题。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="update-item">
+                    <div class="icon">⬆️</div>
+                    <div class="content">
+                        <h2>功能优化</h2>
+                        <p>
+                           优化了BOSS对战时的<span class="highlight">伤害显示</span>，现在可以看到伤害的具体数值单位。
+                        </p>
+                    </div>
+                </div>
+                
+            </div> 
+        </div>
+
+        <!-- 版本 1.2.9.4 -->
+        <div class="version-container">
+            <h2 class="version-title">Version 1.2.9.4 更新公告</h2>
+            <div class="update-list">
+                
+                <div class="update-item">
+                    <div class="icon">📢</div>
+                    <div class="content">
+                        <h2>问题修复</h2>
+                        <p>
+                            修复了当背包为空时无法使用【我的背包】功能的问题。
+                            <br>
+                            修复了【悬赏令帮助】偶现失效的问题。
+                            <br>
+                            修复了【我的状态】中真元显示不正确的问题。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="update-item">
+                    <div class="icon">⬆️⬆</div>
+                    <div class="content">
+                        <h2>功能优化</h2>
+                        <p>
+                            优化了<span class="highlight">宗门帮助</span>的可读性
+                            <br>
+                            优化了BOSS对战时的<span class="highlight">血量显示</span>，便于道友更好的了解BOSS的血量情况。
+                            <br>
+                            优化了【我的功法】的显示效果，现在每33个技能显示为一组单独发送，更加便于查看。
+                        </p>
+                    </div>
+                </div>
+                
+            </div> 
+        </div>
+
+
+        <!-- 版本 1.2.9.3 -->
+          <div class="version-container">
+            <h2 class="version-title">Version 1.2.9.3 更新公告</h2>
+            <div class="update-list">
+                <div class="update-item">
+                    <div class="icon">📢</div>
+                    <div class="content">
+                        <h2>世界BOSS调整</h2>
+                        <p><span class="highlight">BOSS刷新时间调整</span>：20分钟 -> 5分钟
+                        <br>
+                            <span class="highlight">BOSS攻击倍率调整</span>：1.1 -> 0.7
+                        <br>
+                            <span class="highlight">BOSS战斗释放技能概率调整</span>：50% -> 25%
+                        <br>
+                            <span class="highlight">BOSS减益效果调整</span>：削弱了BOSS的降低暴击伤害、降低暴击率、降低攻击力的能力
+                        </p>
+                    </div>
+                </div>
+
+                <div class="update-item">
+                    <div class="icon">📢</div>
+                    <div class="content">
+                        <h2>世界积分商店调整</h2>
+                        <p>所有积分商店商品价格全部<span class="highlight">下调60%</span>。</p>
+                    </div>
+                </div>
+
+                <div class="update-item">
+                    <div class="icon">📢</div>
+                    <div class="content">
+                        <h2>异火抽奖开放奖池内容</h2>
+                        <p>现在发送今日活动可以查询到异火抽奖的奖池内容，包括奖品名称、概率等信息，祝各位抽奖顺利！</p>
+                    </div>
+                </div>
+                
+                <div class="update-item">
+                    <div class="icon">📢</div>
+                    <div class="content">
+                        <h2>全新异火上架抽奖奖池</h2>
+                        <p>高级异火<span class="highlight">【混沌元火】</span>上架异火抽奖奖池</p>
+                    </div>
+                </div>
+
+                <div class="update-item">
+                    <div class="icon">⬆️</div>
+                    <div class="content">
+                        <h2>【查询】功能优化</h2>
+                        <p>优化了在查询异火时的数字显示，现在可以直观的看到增加攻击力的单位。</p>
+                    </div>
+                </div>
+
+            </div> 
+        </div>
+
+        <!-- 版本 1.2.9.2 -->
+         <div class="version-container">
+            <h2 class="version-title">Version 1.2.9.2 更新公告</h2>
+            <div class="update-list">
+
+                <div class="update-item">
+                    <div class="icon">🎁</div>
+                    <div class="content">
+                        <h2>异火抽奖限时开启</h2>
+                        <div class="time-range">【5.19-8.31】</div>
+                        <p>全新限时活动<span class="highlight">【异火抽奖】</span>开启，稀有道具等你来抽！不定时更新奖池，抽到好礼不断！
+                            <br>
+                            抽奖需要消耗<span class="highlight">【异火残卷】</span>，可在商城购买，也可在每日秘境中产出(5.18-8.15)。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="update-item">
+                    <div class="icon">👨🏿‍🔧</div>
+                    <div class="content">
+                        <h2>问题修复</h2>
+                        <p>修复了【确认使用】、【使用】功能在输入不存在的物品时没有正常输出提示信息的问题。</p>
+                    </div>
+                </div>
+                
+                <div class="update-item">
+                    <div class="icon">📢</div>
+                    <div class="content">
+                        <h2>世界BOSS调整</h2>
+                        <p>调整单次讨伐BOSS获取的<span class="highlight">世界BOSS积分</span>上限：无限 -> 1000。<br>
+                            调整BOSS<span class="highlight">掉落物品的概率</span>：10% -> 随着BOSS的境界提升而提升,最高可达15.38%。<br>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="update-item">
+                    <div class="icon">📢</div>
+                    <div class="content">
+                        <h2>【反咒禁制】调整</h2>
+                        <p>下调【反咒禁制】的<span class="highlight">免除减益效果</span>：负面buff全部减免 -> 仅减免70%。<br>
+                            加强【反咒禁制】的<span class="highlight">破甲效果</span>：10% -> 20%。</p>
+                    </p>
+                    </div>
+                </div>
+
+                <div class="update-item">
+                    <div class="icon">📢</div>
+                    <div class="content">
+                        <h2>【异火剥离针】上线</h2>
+                        <p>新增道具<span class="highlight">【异火剥离针】</span>，可将已吸收的<span class="highlight">异火</span>剥离到背包内，并减少攻击力损耗。该道具可在商城购买。</p>
+                    </div>
+                </div>
+
+                <div class="update-item">
+                    <div class="icon">👨🏿‍🔧</div>
+                    <div class="content">
+                        <h2>问题修复</h2>
+                        <p>修复了终焉境圆满<span class="highlight">不能使用悬赏令</span>的问题。</p>
+                    </div>
+                </div>
+
+
+
+            </div> 
+        </div>
+
+
+        <!-- 版本 1.2.9.1 -->
+         <div class="version-container">
+            <h2 class="version-title">Version 1.2.9.1 更新公告</h2>
+            <div class="update-list">
+                <div class="update-item">
+                    <div class="icon">📢</div>
+                    <div class="content">
+                        <h2>异火功能调整</h2>
+                        <p>新增异火在BOSS对战中的<span class="highlight">BUFF效果</span>，提升与BOSS的战斗力。</p>
+                    </div>
+                </div>
+                
+                <div class="update-item">
+                    <div class="icon">📢</div>
+                    <div class="content">
+                        <h2>世界BOSS调整</h2>
+                        <p>调整<span class="highlight">BOSS对战时技能释放概率</span>：16% -> 50%。</p>
+                    </div>
+                </div>
+                
+            </div> 
+        </div>
+
+        <!-- 版本 1.2.9.0 -->
+        <div class="version-container">
+            <h2 class="version-title">Version 1.2.9.0 更新公告</h2>
+            <div class="update-list">
+                <div class="update-item">
+                    <div class="icon">🎉</div>
+                    <div class="content">
+                        <h2>高境界开放悬赏令功能</h2>
+                        <p>祭道境以上<span class="highlight">开放悬赏令功能</span>，助力道友们登峰造极！
+                    </div>
+                </div>
+                <div class="update-item">
+                    <div class="icon">📢</div>
+                    <div class="content">
+                        <h2>世界BOSS调整</h2>
+                        <p>世界BOSS存在上限调整：<span class="highlight">45个 -> 100个</span><br>
+                            世界BOSS属性调整：<span class="highlight">气血倍率由20倍调整为25倍，攻击倍率由0.3倍调整为1.1倍</span><br>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="update-item">
+                    <div class="icon">⬆️</div>
+                    <div class="content">
+                        <h2>帮助信息优化</h2>
+                        <p>新增<span class="highlight">【异火帮助】</span></p>
+                    </div>
+                </div>
+
+                <div class="update-item">
+                    <div class="icon">🎒</div>
+                        <div class="content">
+                            <h2>【功能优化】药材背包智能分页</h2>
+                            <p>优化<span class="highlight">药材背包系统</span>，（最多显示33条/页）</p>
+                        </div>
+                </div>
+
+                
+            </div>
+        </div>
+
+        <!-- 版本 1.2.8.6 -->
+        <div class="version-container">
+            <h2 class="version-title">Version 1.2.8.6 更新公告</h2>
+            <div class="update-list">
+                <div class="update-item">
+                    <div class="icon">👨🏿‍🔧</div>
+                    <div class="content">
+                        <h2>问题修复</h2>
+                        <p>修复了祭道境境界以上boss无法讨伐的问题以及其他部分已知问题。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 版本 1.2.8.5 -->
+        <div class="version-container">
+            <h2 class="version-title">Version 1.2.8.5 更新公告</h2>
+            <div class="update-list">
+                <div class="update-item">
+                    <div class="icon">👨🏿‍🔧</div>
+                    <div class="content">
+                        <h2>问题修复</h2>
+                        <p>修复了世界boss不刷新的问题。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- 版本 1.2.8.4 -->
+        <div class="version-container">
+            <h2 class="version-title">Version 1.2.8.4 更新公告</h2>
+            <div class="update-list">
+                <div class="update-item">   
+                    <div class="icon">✨</div>
+                    <div class="content">
+                        <h2>全新境界登场</h2>
+                        <p><span class="highlight">羽化境➤归墟境➤万衍境➤终焉境</span>，全新境界体系，破界登场，开启全新修仙之旅！从超脱羽化到混沌终焉，四重天堑步步登仙！</p>
+                    </div>
+                </div>
+
+                <div class="update-item">
+                    <div class="icon">🎉</div>
+                        <div class="content">
+                            <h2>地脉灵火上线</h2>
+                            <p>全新异火<span class="highlight">【地脉灵火】</span>上线，开启全新修仙之旅！</p>
+                    </div>
+                </div>  
+
+            </div>
+        </div>
+
+
+        <!-- 版本 1.2.8.3 -->
+        <div class="version-container">
+            <h2 class="version-title">Version 1.2.8.3 更新公告</h2>
+            <div class="update-list">
+                <div class="update-item">
+                    <div class="icon">🎁</div>
+                    <div class="content">
+                        <h2>功能优化</h2>
+                        <p>修复了<span class="highlight">我的修仙信息</span>的显示问题。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 版本 1.2.8.2 -->
+        <div class="version-container">
+            <h2 class="version-title">Version 1.2.8.2 更新公告</h2>
+            <div class="update-list">
+
+                <div class="update-item">
+                    <div class="icon">🔥</div>  
+                    <div class="content">
+                        <h2>【系统预告】异火系统重磅上线</h2>
+                        <p>全新<span class="highlight">异火系统</span>进入最终测试阶段，即将开启异火之地，敬请期待！</p>
+                    </div>
+                </div>
+                
+                <div class="update-item">
+                    <div class="icon">📊</div>
+                    <div class="content">
+                        <h2>【信息展示】个人状态展示全面升级</h2>
+                        <p>现在<span class="highlight">我的状态</span>与<span class="highlight">我的修仙信息</span>中可查看已吸收的异火</p>
+                    </div>
+                </div>
+                
+                <div class="update-item">
+                    <div class="icon">🎒</div>
+                    <div class="content">
+                        <h2>【功能优化】背包智能分页</h2>
+                        <p>优化<span class="highlight">背包系统</span>，支持<span class="highlight">异火类物品</span>（最多显示33条/页）</p>
+                    </div>
+                </div>
+                
+                <div class="update-item">
+                    <div class="icon">📉</div>
+                    <div class="content">
+                        <h2>【平衡调整】秘境产出修正</h2>
+                        <p>下调<span class="highlight">秘境</span>中材料的掉落概率（回归正常合理区间）</p>
+                    </div>
+                </div>
+                
+                <div class="update-item">
+                    <div class="icon">⏳</div>
+                    <div class="content">
+                        <h2>【功能维护】抢灵石功能暂缓</h2>
+                        <p>临时关闭<span class="highlight">抢灵石</span>功能，待机制升级后重新开放</p>
+                    </div>
+                </div>
+                
+                
+
+            </div>
+        </div>
+
+
+        <!-- 版本 1.2.8.1 -->
+        <div class="version-container">
+            <h2 class="version-title">Version 1.2.8.1 更新公告</h2>
+            <div class="update-list">
+                <a href="new.html" class="armor-link">
+                    <div class="update-item">
+                        <div class="icon">🛡</div>  
+                        <div class="content">
+                            <h2>全新成长性防具上线</h2>
+                            <p>全新机制防具<span class=highlight>三清混元塔</span>上线,点击此处查看详情！</p>
+                        </div>
+                    </div>
+                </a>
+                <div class="update-item">
+                    <div class="icon">🛒</div> 
+                    <div class="content">
+                        <h2>积分商店上新</h2>
+                        <p>世界积分商店新增<span class="highlight">【斗破寻宝券】</span>，
+                            售价<span class="highlight">1000积分</span>/张，
+                            本次上架后未来将<span class="highlight">不再下架</span></p>
+                    </div>
+                </div>
+
+                <div class="update-item">
+                    <div class="icon">❀</div>  
+                    <div class="content">
+                        <h2>合成表查询优化</h2>
+                        <p>合成表查询功能优化，更加简洁、直观</span>！</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    
+        <!-- 版本 1.2.8.0 -->
+        <div class="version-container">
+            <h2 class="version-title">Version 1.2.8.0 更新公告</h2>
+            <div class="update-list">
+                <div class="update-item">
+                    <div class="icon">🎁</div>
+                    <div class="content">
+                        <h2>斗破寻宝限时开启</h2>
+                        <div class="time-range">【4.29-5.5】</div>
+                        <p>全新限时活动开启，稀有道具等你来寻！</p>
+                    </div>
+                </div>
+
+                <div class="update-item">
+                    <div class="icon">💥</div>
+                    <div class="content">
+                        <h2>全新技能上线</h2>
+                        <p>SSS级技能<span class="highlight">【大天造化掌】</span>震撼登场！</p>
+                    </div>
+                </div>
+
+                <div class="update-item">
+                    <div class="icon">🎉</div>
+                    <div class="content">
+                        <h2>五一福利节开启</h2>
+                        <div class="time-range">【5.1-5.5】</div>
+                        <p>每日签到可得
+                            <span class="highlight">双倍灵石</span>+
+                            <span class="highlight">斗破夺宝券×1</span>，
+                            <span class="highlight">惊喜神秘奖励</span>！
+                        </p>
+                    </div>
+                </div>
+
+                <div class="update-item">
+                    <div class="icon">🛒</div>
+                    <div class="content">
+                        <h2>商城新品上架</h2>
+                        <p>限时售卖<span class="highlight">【斗破寻宝券】</span>助力寻宝之旅！</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>修仙帮助大全</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* 主容器 */
+        .help-container {
+            width: 90%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+            margin: 40px 0;
+        }
+
+        /* 页面标题 */
+        .page-title {
+            text-align: center;
+            color: #FFD700;
+            font-size: clamp(2rem, 6vw, 3rem);
+            margin-bottom: 30px;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 帮助分类容器 */
+        .help-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 分类标题 */
+        .section-title {
+            color: #FFD700;
+            font-size: clamp(1.5rem, 5vw, 2.2rem);
+            margin-bottom: 25px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            padding-left: 25px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 80%;
+            background: #FF6B6B;
+            border-radius: 3px;
+        }
+
+        .section-icon {
+            margin-right: 15px;
+            font-size: 1.5em;
+        }
+
+        /* 帮助项列表 */
+        .help-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* 帮助项 */
+        .help-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        @media (hover: hover) {
+            .help-item:hover {
+                transform: translateX(10px);
+            }
+        }
+
+        /* 帮助项标题 */
+        .help-item-title {
+            color: #FFD700;
+            font-size: clamp(1.1rem, 4vw, 1.3rem);
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        /* 帮助项内容 */
+        .help-item-content {
+            color: #FFFFFF;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+            line-height: 1.6;
+            white-space: pre-line;
+        }
+
+        /* 高亮文字 */
+        .highlight {
+            color: #FFD700;
+            font-weight: bold;
+            word-break: keep-all;
+        }
+
+        /* 命令高亮 */
+        .command {
+            color: #FF6B6B;
+            font-weight: bold;
+            background: rgba(255, 107, 107, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        /* 移动端优化 */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .help-container {
+                gap: 25px;
+                width: 95%;
+            }
+
+            .help-section {
+                padding: 20px;
+                border-radius: 15px;
+            }
+
+            .section-title {
+                padding-left: 20px;
+                margin-bottom: 20px;
+            }
+
+            .help-item {
+                padding: 15px;
+            }
+        }
+
+        /* 触屏设备优化 */
+        @media (pointer: coarse) {
+            .help-item {
+                transition: none;
+            }
+        }
+
+        /* 目录导航 */
+        .toc {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+        }
+
+        .toc-title {
+            color: #FFD700;
+            font-size: clamp(1.3rem, 4vw, 1.6rem);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .toc-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .toc-item {
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .toc-item:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="help-container">
+        <!-- 页面标题 -->
+        <div class="page-title">
+            ✨ 修仙帮助大全 ✨
+        </div>
+
+        <!-- 目录导航 -->
+        <div class="toc">
+            <h2 class="toc-title">📚 快速导航</h2>
+            <div class="toc-list">
+                <a href="#newbie" class="toc-item">🎯 新手入门</a>
+                <a href="#backpack" class="toc-item">🎒 背包系统</a>
+                <a href="#items" class="toc-item">⚔️ 物品使用</a>
+                <a href="#market" class="toc-item">🏪 交易系统</a>
+                <a href="#cultivation" class="toc-item">🧘 修炼系统</a>
+                <a href="#combat" class="toc-item">⚔️ 战斗系统</a>
+                <a href="#special" class="toc-item">🌟 特殊功能</a>
+                <a href="#game" class="toc-item">🎮 娱乐功能</a>
+            </div>
+        </div>
+
+        <!-- 新手入门 -->
+        <div id="newbie" class="help-section">
+            <h2 class="section-title">
+                <span class="section-icon">🎯</span>
+                新手入门
+            </h2>
+            <div class="help-list">
+                <div class="help-item">
+                    <div class="help-item-title">新手帮助</div>
+                    <div class="help-item-content">如何开始修炼：【修炼帮助】
+修为满了怎么办：【突破帮助】
+如何查看背包：【背包帮助】
+新手福利：【仙途奇缘帮助】
+每日签到：【修仙签到】
+发送【】内的文字即可查阅对应信息
+
+熟悉基本内容后发送【所有帮助】了解更多吧！</div>
+                </div>
+
+                <div class="help-item">
+                    <div class="help-item-title">仙途奇缘帮助</div>
+                    <div class="help-item-content">为了让初入仙途的道友们更顺利地踏上修炼之路，特别开辟了额外的机缘
+天降灵石，助君一臂之力。
+若有心人借此谋取不正之利，必将遭遇天道轮回，异象降临，后果自负。
+诸位道友，若不信此言，可自行一试，便知天机不可泄露，天道不容欺。
+输入 <span class="command">仙途奇缘</span> 一试</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 背包系统 -->
+        <div id="backpack" class="help-section">
+            <h2 class="section-title">
+                <span class="section-icon">🎒</span>
+                背包系统
+            </h2>
+            <div class="help-list">
+                <div class="help-item">
+                    <div class="help-item-title">背包帮助</div>
+                    <div class="help-item-content">背包篇：
+发送 <span class="command">我的背包</span> 查看背包：装备、神物、聚灵旗、礼包、灵石、道具
+发送 <span class="command">丹药背包</span> 查看背包中的所有丹药
+发送 <span class="command">药材背包</span> 查看背包中的所有药材
+发送 <span class="command">我的功法</span> 查看自身功法信息以及背包内的所有功法信息
+输入 <span class="command">灵石</span> 可查看灵石数量</div>
+                </div>
+
+                <div class="help-item">
+                    <div class="help-item-title">锁定功能帮助</div>
+                    <div class="help-item-content">锁定物品可以使锁定的物品不被炼金！
+发送 <span class="command">锁定 (物品名称)</span> 即可锁定指定物品
+发送 <span class="command">解除锁定 (物品名称)</span> 即可解除指定物品的锁定
+发送 <span class="command">查看锁定物品</span> 即可查看所有锁定的物品
+发送 <span class="command">解除所有物品锁定</span> 即可解除所有锁定</div>
+                </div>
+
+                <div class="help-item">
+                    <div class="help-item-title">个人信息帮助</div>
+                    <div class="help-item-content">输入 <span class="command">我的修仙信息</span> 可以查看你的全部信息
+输入 <span class="command">我的状态</span> 可以查看当前状态(气血,真元等)
+输入 <span class="command">我的突破概率</span> 可以查看当前突破概率
+输入 <span class="command">改名xx</span> 可以修改自己的道号
+输入 <span class="command">我的体力</span> 可以查看自己的体力</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 物品使用 -->
+        <div id="items" class="help-section">
+            <h2 class="section-title">
+                <span class="section-icon">⚔️</span>
+                物品使用
+            </h2>
+            <div class="help-list">
+                <div class="help-item">
+                    <div class="help-item-title">使用物品帮助</div>
+                    <div class="help-item-content">输入 <span class="command">使用 (物品名称)</span> 可以学习功法、神通,使用丹药,装备法器(注意功法等级，切莫低级替换高级)
+输入 <span class="command">一键使用 (物品名称)</span> 可以一键使用所有该物品
+输入 <span class="command">换装 (物品名称)</span> | <span class="command">卸下 (物品名称)</span> 可以卸下功法、神通、法器等</div>
+                </div>
+
+                <div class="help-item">
+                    <div class="help-item-title">查询物品帮助</div>
+                    <div class="help-item-content">如果想要查看游戏内所有物品,输入 <span class="command">查看修仙界物品 [功法|神通|丹药|合成丹药|法器|防具]</span> 即可查看(机器人回复可能稍慢,请耐心等待)
+如果想要查看单个物品的详情信息,输入 <span class="command">查询 [物品名称]</span> | <span class="command">物品详情 [物品名称]</span> 即可查看</div>
+                </div>
+
+                <div class="help-item">
+                    <div class="help-item-title">炼金帮助</div>
+                    <div class="help-item-content">如果有多余的物品可以输入 <span class="command">炼金 (物品名称)</span> 炼金可以获取灵石,也可以输入<span class="command">炼金 (物品名称) (炼金数量)</span>来指定炼金多少个
+你也可输入 <span class="command">一键炼金 【技能|装备|丹药|药材】</span> 来一键炼金所有同类物品
+如果你想炼金特定品级的药材,可以发送 <span class="command">药材一键炼金</span> 后再发送品级</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 交易系统 -->
+        <div id="market" class="help-section">
+            <h2 class="section-title">
+                <span class="section-icon">🏪</span>
+                交易系统
+            </h2>
+            <div class="help-list">
+                <div class="help-item">
+                    <div class="help-item-title">坊市帮助</div>
+                    <div class="help-item-content">坊市分为【功法|辅修功法|神通|丹药|法器|防具|道具|药材】8个坊市
+当你的灵石充足时,输入 <span class="command">查看坊市 (物品种类) (页码)</span>可查看当前正在售卖的物品编号
+如果找到心仪的物品,输入 <span class="command">坊市购买 (物品种类) (物品编号) (数量)</span> 即可购买到背包
+如果你想出售你的物品,输入 <span class="command">坊市上架 (物品名称) (金额)</span> 即可上架到对应种类的坊市
+如果你想下架你已经上架的物品,输入 <span class="command">坊市下架 (物品种类) (坊市物品编号)</span> 即可下架对应物品</div>
+                </div>
+
+                <div class="help-item">
+                    <div class="help-item-title">拍卖会帮助</div>
+                    <div class="help-item-content">每4小时系统会自动生成一场拍卖会
+输入 <span class="command">拍卖品查看</span> | <span class="command">查看拍卖品</span> 可以查看等待拍卖的物品队列
+输入 <span class="command">拍卖 (灵石数量)</span> 即可竞价,30秒后价高者得
+如果你想拍卖自己的物品输入 <span class="command">提交拍卖品 (物品名称) (起拍价)</span> | <span class="command">拍卖品提交 (物品名称) (起拍价)</span> 即可在下一次拍卖会上优先拍卖你的物品
+如果你想撤回你提交的拍卖品输入 <span class="command">撤回拍卖品 (拍卖品编号)</span> 即可撤回你的拍卖品</div>
+                </div>
+
+                <div class="help-item">
+                    <div class="help-item-title">灵庄帮助</div>
+                    <div class="help-item-content">灵庄是储存灵石的好地方,存在灵庄的灵石不会被其它道友抢或偷,还有一定的利率
+输入 <span class="command">灵庄存灵石 (存入金额)</span> 即可存入灵石
+初始灵庄只能存入100w灵石,想要存入更多则输入 <span class="command">灵庄升级会员</span> 消耗一定数量的灵石来提升会员等级
+提升会员等级后可以提高灵庄可存入灵石数量以及利率,详情请输入 <span class="command">灵庄利息</span> | <span class="command">利息</span> | <span class="command">利息帮助</span> 来查看
+当你需要取出灵石时只需输入 <span class="command">灵庄取灵石 (取出金额)</span>即可
+如果你仅仅需要结算灵庄产生的利息则输入 <span class="command">灵庄结算</span> 即可
+
+注意:
+存在灵庄的灵石是不可用于任何地方的！</div>
+                </div>
+
+                <div class="help-item">
+                    <div class="help-item-title">灵庄等级及利息</div>
+                    <div class="help-item-content">会员等级   可存入灵石  升级花费   利息
+普通会员   1000000              0.0020
+小会员     2000000    200000    0.0021
+大会员     4000000    400000    0.0022
+优质会员   8000000    800000    0.0023
+黄金会员   16000000   1600000   0.0024
+钻石会员   32000000   3200000   0.0025
+终极会员   64000000   6400000   0.0028
+至尊会员   128000000  12800000  0.0031</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 修炼系统 -->
+        <div id="cultivation" class="help-section">
+            <h2 class="section-title">
+                <span class="section-icon">🧘</span>
+                修炼系统
+            </h2>
+            <div class="help-list">
+                <div class="help-item">
+                    <div class="help-item-title">修炼帮助</div>
+                    <div class="help-item-content">手动修炼:输入 <span class="command">修炼</span> 或者 <span class="command">修仙</span> 即可进行修炼,每两分钟可以修炼一次
+灵石修炼:输入 <span class="command">灵石修炼 (灵石数量)</span> 即可进行灵石修炼,每10个灵石可修炼1点修为
+闭关修炼:输入 <span class="command">闭关</span> 即可进入闭关修炼状态,输入 <span class="command">出关</span> 即可结束闭关,闭关时间越长提升修为越高
+灵石出关:输入 <span class="command">灵石出关 (灵石数量)</span> 可稍微提高闭关获得的修为,灵石越多提升越高
+双修:输入 <span class="command">双修@xxx</span> (直接@qq就行)即可与道侣双修,双修只能与修为与自己相近或比自己低的道侣进行
+输入 <span class="command">切磋 @xx</span> 可以与道友切磋,不消耗气血
+输入 <span class="command">我的双修次数</span> 可查看剩余双修次数
+注意:以上方法均可回复气血和真元</div>
+                </div>
+
+                <div class="help-item">
+                    <div class="help-item-title">突破帮助</div>
+                    <div class="help-item-content">在一个境界修炼到一定修为则无法继续提升修为,此时需要突破
+输入 <span class="command">突破</span> 可查看当前突破信息
+输入 <span class="command">直接突破</span> 时突破失败会扣除一定修为
+当背包有渡厄丹时可以输入 <span class="command">渡厄突破</span> 突破失败不会扣除修为
+当背包有渡厄金丹时可以输入 <span class="command">渡厄金丹突破</span> | <span class="command">金丹突破</span> 突破必定成功
+全部境界请输入 <span class="command">境界帮助</span> | <span class="command">境界</span> 查看</div>
+                </div>
+
+                <div class="help-item">
+                    <div class="help-item-title">境界帮助</div>
+                    <div class="help-item-content">灵根帮助:
+轮回——异界——机械——混沌
+融——超——龙——天——异——真——伪
+
+境界帮助:
+终焉境——万衍境——归墟境——羽化境
+祭道境——仙帝境——准帝境——仙王境
+真仙境——至尊境——遁一境——斩我境
+虚道境——天神境——圣祭境——真一境
+神火境——尊者境——列阵境——铭纹境
+化灵境——洞天境——搬血境——江湖人
+
+功法品阶:
+无上
+仙阶极品
+仙阶上品——仙阶下品
+天阶上品——天阶下品
+地阶上品——地阶下品
+玄阶上品——玄阶下品
+黄阶上品——黄阶下品
+人阶上品——人阶下品
+
+法器品阶:
+无上
+极品仙器
+上品仙器——下品仙器
+上品通天——下品通天
+上品纯阳——下品纯阳
+上品法器——下品法器
+上品符器——下品符器</div>
+                </div>
+
+                <div class="help-item">
+                    <div class="help-item-title">更换灵根帮助</div>
+                    <div class="help-item-content">当你不满意你的灵根时可以输入 <span class="command">重入仙途</span> 重置灵根数据,每次1000灵石
+当你第一次修练至最高境界时，可以输入 <span class="command">轮回重修帮助</span> 查看帮助
+输入 <span class="command">灵根</span> | <span class="command">灵根帮助</span> 可查看所有灵根</div>
+                </div>
+
+                <div class="help-item">
+                    <div class="help-item-title">灵田帮助</div>
+                    <div class="help-item-content">灵田可以持续产生药材资源
+输入 <span class="command">洞天福地购买</span> 即可买下一方福地开垦灵田
+输入 <span class="command">灵田开垦</span> 花费一定灵石开垦灵田(灵田数量+1)
+输入 <span class="command">灵田收取</span> 即可采收药材,每48小时可采集一次
+输入 <span class="command">洞天福地查看</span> 即可查看自己的洞天福地信息
+输入 <span class="command">洞天福地改名 (修改的名字)</span> 即可修改自己洞天福地的名字</div>
+                </div>
+
+                <div class="help-item">
+                    <div class="help-item-title">炼丹帮助</div>
+                    <div class="help-item-content">输入 <span class="command">炼丹</span> 会检测背包内的药材,自动生成配方【一次最多匹配25种药材】
+输入 <span class="command">主药 药引 辅药</span> 发送配方炼制丹药【配方主药.....】
+输入 <span class="command">炼丹配方帮助</span> 获取炼丹配方帮助
+输入 <span class="command">灵田收取</span> 或 <span class="command">灵田结算</span> 收取洞天福地里灵田的药材
+输入 <span class="command">我的炼丹信息</span> 查询自己的炼丹信息
+输入 <span class="command">升级收取等级</span> 升级收取等级会增加灵田收取的数量
+输入 <span class="command">升级丹药控火</span> 升级丹药控火会增加炼丹的产出数量
+输入 <span class="command">丹药背包</span> 查看背包中的所有丹药
+输入 <span class="command">药材背包</span> 查看背包中的所有药材</div>
+                </div>
+
+                <div class="help-item">
+                    <div class="help-item-title">炼丹配方帮助</div>
+                    <div class="help-item-content">1、炼丹需要主药、药引、辅药
+2、主药和药引控制炼丹时的冷热调和,冷热失和则炼不出丹药
+3、草药的类型控制产出丹药的类型
+4、炼丹配方查询工具(需要魔法) 
+https://huggingface.co/spaces/chewing/liandan</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 战斗系统 -->
+        <div id="combat" class="help-section">
+            <h2 class="section-title">
+                <span class="section-icon">⚔️</span>
+                战斗系统
+            </h2>
+            <div class="help-list">
+                <div class="help-item">
+                    <div class="help-item-title">世界Boss帮助</div>
+                    <div class="help-item-content">世界BOSS10分钟刷新一次,刷新时有世界公告
+输入 <span class="command">查询世界boss</span> 查看现有的boss编号
+输入 <span class="command">查询世界boss+编号</span> 可查看对应boss当前状态
+再输入 <span class="command">讨伐世界boss(boss编号)</span> 讨伐boss,战胜后有世界积分奖励
+
+世界积分篇:
+输入 <span class="command">世界积分查看</span> 查看自己的世界积分和积分可兑换的物品编号
+输入 <span class="command">世界积分兑换+(物品编号)</span> 兑换物品
+
+小tips：
+只有击杀与自己境界相差6个小境界之内的BOSS(遁一境以上)才有概率掉落高级物品,BOSS级别越高掉落概率越大！</div>
+                </div>
+
+                <div class="help-item">
+                    <div class="help-item-title">虚神界与传承</div>
+                    <div class="help-item-content">虚神界篇：
+输入 <span class="command">投影虚神界</span> 将自己的分身投影到虚神界,将可被所有地域(群聊)的道友挑战
+输入 <span class="command">虚神界列表</span> 查找虚神界里所有的投影
+输入 <span class="command">虚神界对决 @xx(不@或者@的人不在虚神界则默认与bot对决)</span> 输入虚神界人物编号即可与对方对决,不输入编号将会与修仙机器人进行对决,每天有三次虚神界对决次数
+输入 <span class="command">虚神界修炼 (修炼时间)</span> 即可在虚神界修炼(和闭关相同),不受其他操作的限制
+
+传承篇:
+输入 <span class="command">传承抽卡</span> 花费10颗思恋结晶获取一次传承卡片
+输入 <span class="command">一键传承抽卡</span> 花费所有思恋结晶(10的倍数)获取一次传承卡片
+输入 <span class="command">传承信息</span> 获取传承主要信息
+输入 <span class="command">传承背包</span> 获取传承全部信息
+输入 <span class="command">加载传承数据</span> 重新从卡片中加载所有传承属性(数据显示有误时可用)
+
+思恋结晶获取方式:虚神界对决【俄罗斯轮盘修仙版】
+双方共6次机会,6次中必有一次暴毙
+获胜者将获取10颗思恋结晶并不消耗虚神界对决次数
+失败者将获取5颗思恋结晶并且消耗一次虚神界对决次数
+每日有三次失败机会</div>
+                </div>
+
+                <div class="help-item">
+                    <div class="help-item-title">异火帮助</div>
+                    <div class="help-item-content">发送 <span class="command">吸收异火 （异火名称）</span> 即可吞噬异火
+发送 <span class="command">遗忘异火</span> 即可遗忘异火（不会回到背包内）
+发送 <span class="command">剥离异火</span> 消耗【异火剥离针】 即可剥离异火
+
+tips：
+1、【遗忘异火】后失去90%吸收异火增加的攻击力且不会返回背包内,【剥离异火】后仅失去50%吸收异火增加的攻击力，而且异火会返回背包内
+2、【异火剥离针】可在商城购买</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 特殊功能 -->
+        <div id="special" class="help-section">
+            <h2 class="section-title">
+                <span class="section-icon">🌟</span>
+                特殊功能
+            </h2>
+            <div class="help-list">
+                <div class="help-item">
+                    <div class="help-item-title">悬赏系统</div>
+                    <div class="help-item-content">玩法:
+输入 <span class="command">悬赏令</span> 获取对应实力的悬赏令
+输入 <span class="command">悬赏令刷新</span> 刷新当前悬赏令,每日免费3次
+输入 <span class="command">悬赏令终止</span> 终止当前悬赏令任务,失信道友会扣除大量灵石
+输入 <span class="command">悬赏令结算</span> 结算悬赏奖励
+输入 <span class="command">悬赏令接取 (悬赏令编号)</span> 接取对应的悬赏令
+输入 <span class="command">最后的悬赏令</span> 用于接了悬赏令却境界突破导致卡住的道友使用</div>
+                </div>
+
+                <div class="help-item">
+                    <div class="help-item-title">轮回重修帮助</div>
+                    <div class="help-item-content">详情：
+散尽修为，轮回重修，将万世的道果凝聚为极致天赋
+修为、功法、神通将被清空！！
+输入 <span class="command">进入千世轮回</span> ：获得轮回灵根
+输入 <span class="command">进入万世轮回</span> ：获得真轮回灵根
+输入 <span class="command">自废修为</span> ：字面意思，仅搬血境可用</div>
+                </div>
+
+                <div class="help-item">
+                    <div class="help-item-title">悟道帮助</div>
+                    <div class="help-item-content">当道友修为已经登峰造极达到极限时，可以输入 <span class="command">悟道</span> 自行降级并获得随机物品，但背包内的所有物品均不会消失</div>
+                </div>
+
+                <div class="help-item">
+                    <div class="help-item-title">排行榜帮助</div>
+                    <div class="help-item-content">输入 <span class="command">修仙排行榜</span> <span class="command">灵石排行榜</span> <span class="command">战力排行榜</span> <span class="command">宗门排行榜</span> 查看对应排行榜</div>
+                </div>
+
+                <div class="help-item">
+                    <div class="help-item-title">卡密帮助</div>
+                    <div class="help-item-content">输入【商城】选择想要购买的物品复制链接到浏览器中打开即可购买卡密
+卡密使用方法：
+发送 <span class="command">使用卡密 (复制卡密内容到此处)</span> 即可使用卡密</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 娱乐功能 -->
+        <div id="game" class="help-section">
+            <h2 class="section-title">
+                <span class="section-icon">🎮</span>
+                娱乐功能
+            </h2>
+            <div class="help-list">
+                <div class="help-item">
+                    <div class="help-item-title">小游戏帮助</div>
+                    <div class="help-item-content">当道友今日体力值不足时，可以输入 <span class="command">小游戏帮助</span> 进行小游戏，获得随机体力值
+
+输入 <span class="command">查询小游戏次数</span> 可以查看今日剩余小游戏次数,小游戏次数可以通过每日签到【修仙签到】获得
+
+已开放小游戏：
+气血搬运（发送指令：【搬血】）: 修炼者在进行〖气血搬运〗修炼时，需要将气、血、凝三种元素的元素搬运到另一侧，使之互相流通，并最终形成一定的血脉,完成后可以获得5-15点体力值。</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 页脚 -->
+        <div class="help-section">
+            <div class="help-item">
+                <div class="help-item-title">📖 完整帮助信息</div>
+                <div class="help-item-content">✨所有帮助信息✨
+--------------------
+新手请发送【新手帮助】
+--------------------
+？如何查看背包：【背包帮助】
+？如何使用物品：【使用物品帮助】
+？如何查询物品：【查询物品帮助】
+？如何炼金不需要的物品: 【炼金帮助】
+？如何购买物品或出售物品给其他道友：【坊市帮助】
+？如何参与拍卖会：【拍卖会帮助】
+？如何锁定背包物品防止被不小心炼金：【锁定功能帮助】
+？如何储存灵石并产生收益：【灵庄帮助】
+？如何查看和修改个人信息：【个人信息帮助】
+？如何开始修炼：【修炼帮助】
+？修为满了怎么办：【突破帮助】
+？如何更换灵根：【更换灵根帮助】
+？如何查看排行榜：【排行榜帮助】
+？新手福利：【仙途奇缘帮助】
+？如何种植药材：【灵田帮助】
+？不知道怎么合成想要的物品？【合成帮助】
+？如何在虚神界修炼：【虚神界帮助】
+？如何炼丹：【炼丹帮助】
+？宗门怎么玩：【宗门帮助】
+？怎么做任务？【悬赏令帮助】
+？怎么探索秘境：【秘境帮助】
+？如何进行轮回重修：【轮回重修帮助】
+？如何查看世界boss信息：【世界boss帮助】
+？如何使用卡密：【卡密帮助】
+？如何使用异火：【异火帮助】
+？如何悟道：【悟道帮助】</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
