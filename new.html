@@ -6,9 +6,8 @@
     <title>三清混元塔进阶系统</title>
     <style>
         body {
-            background: #1a1a1a;
+            background: #181828;
             color: #e4e4e4;
-            font-family: 'Microsoft YaHei', sans-serif;
             padding: 20px;
         }
     
@@ -16,12 +15,20 @@
             max-width: 1200px;
             margin: 0 auto;
         }
-    
+        .evolution-section {
+            margin-bottom: 40px;
+        }
+        .section-divider {
+            border: none;
+            border-top: 2px dashed #FFD70044;
+            margin: 40px 0 30px 0;
+        }
         .evolution-system {
             display: flex;
             justify-content: space-between;
             position: relative;
-            padding: 40px 0;
+            padding: 40px 0 20px 0;
+            gap: 20px;
         }
     
         
@@ -29,28 +36,43 @@
         .evolution-node {
             position: relative;
             z-index: 1;
-            width: 200px;
+            width: 220px;
             animation: nodeEntrance 0.6s ease-out both;
         }
 
         
     
         .node-card {
-            background: rgba(255,215,0,0.15);
-            border: 1px solid #FFD700;
-            border-radius: 8px;
-            padding: 15px;
+            background: linear-gradient(135deg, #2d2d44 60%, #FFD70022 100%);
+            border: 2px solid #FFD700;
+            border-radius: 14px;
+            padding: 22px 15px 18px 15px;
             text-align: center;
             position: relative;
-            backdrop-filter: blur(5px);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 8px 32px 0 rgba(0,0,0,0.25), 0 1.5px 8px #FFD70033;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .node-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(255,215,0,0.2);
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 16px 40px 0 rgba(255,215,0,0.18), 0 2px 12px #FFD70055;
         }
-    
+        .node-card h3 {
+            font-size: 1.25rem;
+            color: #FFD700;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        .node-card p {
+            color: #fff;
+            font-size: 1rem;
+            opacity: 0.92;
+        }
+        .node-icon {
+            font-size: 2.2em;
+            margin-bottom: 8px;
+            display: block;
+        }
         .condition {
             display: block;
             position: absolute;
@@ -58,84 +80,138 @@
             left: 50%;
             transform: translateX(-50%);
             color: #FF6B6B;
-            font-size: 12px;
+            font-size: 13px;
             white-space: nowrap;
-            background: rgba(255,107,107,0.2);
-            padding: 4px 8px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
+            background: rgba(255,107,107,0.18);
+            padding: 5px 12px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px #FF6B6B22;
+            font-weight: bold;
         }
     
         .evolution-node:hover .condition {
-            text-shadow: 0 0 8px rgba(255,107,107,0.6);
-            transform: translateX(-50%) scale(1.05);
+            text-shadow: 0 0 8px #FF6B6B99;
+            transform: translateX(-50%) scale(1.07);
         }
 
         .stage-card {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
             margin-top: 60px;
         }
     
         .stage {
-            background: rgba(255,255,255,0.1);
-            border-radius: 8px;
-            padding: 20px;
-            opacity: 0;
+            background: linear-gradient(120deg, #23233a 60%, #FFD70011 100%);
+            border-radius: 12px;
+            padding: 24px 18px 18px 18px;
+            box-shadow: 0 4px 18px #0005, 0 1px 6px #FFD70022;
+            border: 1.5px solid #FFD70033;
             transform: translateY(20px);
             animation: stageEntrance 0.6s ease forwards;
             animation-delay: calc(var(--index) * 0.15s);
+            position: relative;
         }
-
-        @keyframes stageEntrance {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .stage h3 {
+            color: #FFD700;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+            text-align: left;
         }
-    
+        .stage::before {
+            content: '★';
+            color: #FFD700;
+            font-size: 1.3em;
+            position: absolute;
+            left: 12px;
+            top: 18px;
+            opacity: 0.7;
+        }
         .material-list {
-            list-style: none;
             padding: 0;
-            margin-top: 15px;
+            margin-top: 10px;
         }
     
         .material-item {
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin: 8px 0;
-            transition: all 0.25s ease;
+            gap: 12px;
+            margin: 10px 0;
+            transition: all 0.22s;
             cursor: pointer;
+            padding: 10px 8px 10px 8px;
+            border-radius: 7px;
+            border-bottom: 1px dashed #FFD70033;
+            background: rgba(50, 16, 16, 0.228);
+            color: #fff !important;
+        }
+        .material-item:last-child {
+            border-bottom: none;
         }
 
         .material-item:hover {
-            background: rgba(255,255,255,0.05);
-            transform: translateX(8px);
+            background: rgba(255,215,0,0.08);
+            transform: translateX(10px) scale(1.03);
+            box-shadow: 0 2px 8px #FFD70022;
+        }
+
+        .material-item.rare {
+            background: linear-gradient(90deg, #FFD70022 60%, #fff0 100%);
+            border: 1.5px solid #FFD70099;
+        }
+
+        .material-item.legendary {
+            background: linear-gradient(90deg, #9C27B022 60%, #fff0 100%);
+            border: 1.5px solid #9C27B0AA;
         }
 
         .material-icon {
-            transition: transform 0.3s ease;
+            font-size: 1.5em;
+            min-width: 32px;
+            text-align: center;
+            transition: transform 0.3s;
+
         }
 
         .material-item:hover .material-icon {
             animation: iconPulse 0.6s ease;
         }
+
+        .material-quantity {
+            color: #FFD700;
+            font-weight: bold;
+            margin-left: auto;
+            font-size: 1.1em;
+        }
     
         /* 响应式调整 */
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .evolution-system {
                 flex-direction: column;
-                gap: 80px;
+                gap: 40px;
+                align-items: center;
             }
-            
-            .evolution-system::before {
-                display: none;
+            .evolution-node {
+                width: 100%;
+                margin: 0 0 18px 0;
             }
-            
             .stage-card {
                 grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 2px;
+            }
+            .stage {
+                padding: 12px 6px 10px 6px;
+            }
+            .stage-card {
+                gap: 16px;
+            }
+            .node-card {
+                padding: 14px 6px 10px 6px;
             }
         }
 
@@ -178,6 +254,7 @@
             .stage-card {
                 gap: 25px;
                 margin-top: 40px;
+                color: #fff !important;
             }
 
             .stage {
@@ -279,16 +356,43 @@
             transition: none !important;
         }
     }
+    .material-item span, .material-item .material-quantity {
+        color: #fff !important;
+    }
+    .material-item.rare span, .material-item.rare .material-quantity {
+        color: #FFD700 !important;
+    }
+    .material-item.legendary span, .material-item.legendary .material-quantity {
+        color: #B388FF !important;
+    }
+    .get-method-btn {
+      margin-left: 12px;
+      background: linear-gradient(90deg, #FFD700 60%, #FFEF8F 100%);
+      color: #23233a;
+      border: none;
+      border-radius: 6px;
+      padding: 2px 12px;
+      font-size: 0.95em;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #FFD70022;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .get-method-btn:hover {
+      background: linear-gradient(90deg, #FFEF8F 60%, #FFD700 100%);
+      transform: scale(1.07);
+    }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="evolution-section">
-            <h2>「三清混元塔」进阶系统</h2>
+            <h2 style="font-size:1.7rem;color:#FFD700;text-align:center;letter-spacing:2px;margin-bottom:18px;text-shadow:0 2px 8px #FFD70033;">「三清混元塔」进阶系统</h2>
             <div class="evolution-system">
                 <!-- 第一阶段 -->
                 <div class="evolution-node">
                     <div class="node-card">
+                        <span class="node-icon">🗿</span>
                         <h3>一阶·玄铁镇妖塔</h3>
                         <p>基础减伤率：10%</p>
                     </div>
@@ -297,6 +401,7 @@
                 <!-- 第二阶段 -->
                 <div class="evolution-node">
                     <div class="node-card">
+                        <span class="node-icon">🔥</span>
                         <span class="condition">吞噬地脉灵火</span>
                         <h3>二阶·赤炎焚天塔</h3>
                         <p>基础减伤率：25% | 攻击力+50% | 暴击率+10%</p>
@@ -306,6 +411,7 @@
                 <!-- 第三阶段 -->
                 <div class="evolution-node">
                     <div class="node-card">
+                        <span class="node-icon">🌌</span>
                         <span class="condition">融合星核碎片</span>
                         <h3>三阶·混元乾坤塔</h3>
                         <p>基础减伤率：40% | 攻击力+110% | 暴击率+20%</p>
@@ -315,6 +421,7 @@
                 <!-- 最终阶段 -->
                 <div class="evolution-node">
                     <div class="node-card">
+                        <span class="node-icon">☯️</span>
                         <h3>最终·三清混元塔</h3>
                         <span class="condition">吸收周天星辰</span>
                         <p>
@@ -323,46 +430,40 @@
                     </div>
                 </div>
             </div>
-
-
-            <h2>「三清混元塔」合成系统</h2>
+            <hr class="section-divider">
+            <h2 style="font-size:1.5rem;color:#FFD700;text-align:center;letter-spacing:1.5px;margin-bottom:12px;text-shadow:0 2px 8px #FFD70033;">「三清混元塔」合成系统</h2>
             <div class="stage-card">
                 <div class="stage">
                     <h3>一阶·玄铁镇妖塔</h3>
                     <ul class="material-list">
-                        <li class="material-item">
-                            <div class="material-icon">🪙</div>
-                            <span>玄铁精髓</span>
-                        </li>
-                        <li class="material-item">
-                            <div class="material-icon">🪙</div>
-                            <span>百年桃木心</span>
-                        </li>
-                        <li class="material-item">
-                            <div class="material-icon">🪙</div>
-                            <span>封妖符</span>
-                        </li>
+                        <li class="material-item"><div class="material-icon">⚔️</div><span>玄铁精髓</span><span class="material-quantity">x1</span><button class="get-method-btn" data-material="玄铁精髓">获取方法</button></li>
+                        <li class="material-item"><div class="material-icon">🌳</div><span>百年桃木心</span><span class="material-quantity">x1</span><button class="get-method-btn" data-material="百年桃木心">获取方法</button></li>
+                        <li class="material-item"><div class="material-icon">📜</div><span>封妖符</span><span class="material-quantity">x1</span><button class="get-method-btn" data-material="封妖符">获取方法</button></li>
                     </ul>
                 </div>
-
                 <div class="stage">
                     <h3>二阶·赤炎焚天塔</h3>
                     <ul class="material-list">
-                        <li class="material-item">
-                            <div class="material-icon">🪙</div>
-                            <span>玄铁镇妖塔</span>
-                        </li>
-                        <li class="material-item">
-                            <div class="material-icon">🪙</div>
-                            <span>地脉灵火</span>
-                        </li>
+                        <li class="material-item"><div class="material-icon">🏛️</div><span>玄铁镇妖塔</span><span class="material-quantity">x1</span><button class="get-method-btn" data-material="玄铁镇妖塔">获取方法</button></li>
+                        <li class="material-item rare"><div class="material-icon">🔥</div><span>地脉灵火</span><span class="material-quantity">x1</span><button class="get-method-btn" data-material="地脉灵火">获取方法</button></li>
                     </ul>
                 </div>
-
                 <div class="stage">
                     <h3>三阶·混元乾坤塔</h3>
                     <ul class="material-list">
-                        未开放！
+                        <li class="material-item"><div class="material-icon">🏛️</div><span>赤炎焚天塔</span><span class="material-quantity">x1</span><button class="get-method-btn" data-material="赤炎焚天塔">获取方法</button></li>
+                        <li class="material-item rare"><div class="material-icon">⭐</div><span>星核碎片</span><span class="material-quantity">x1</span><button class="get-method-btn" data-material="星核碎片">获取方法</button></li>
+                        <li class="material-item"><div class="material-icon">🌌</div><span>虚空精华</span><span class="material-quantity">x5</span><button class="get-method-btn" data-material="虚空精华">获取方法</button></li>
+                        <li class="material-item"><div class="material-icon">⚡</div><span>雷霆之心</span><span class="material-quantity">x1</span><button class="get-method-btn" data-material="雷霆之心">获取方法</button></li>
+                    </ul>
+                </div>
+                <div class="stage">
+                    <h3>最终·三清混元塔</h3>
+                    <ul class="material-list">
+                        <li class="material-item"><div class="material-icon">🏛️</div><span>混元乾坤塔</span><span class="material-quantity">x1</span><button class="get-method-btn" data-material="混元乾坤塔">获取方法</button></li>
+                        <li class="material-item legendary"><div class="material-icon">🌟</div><span>周天星辰</span><span class="material-quantity">x1</span><button class="get-method-btn" data-material="周天星辰">获取方法</button></li>
+                        <li class="material-item rare"><div class="material-icon">☯️</div><span>太极阴阳石</span><span class="material-quantity">x3</span><button class="get-method-btn" data-material="太极阴阳石">获取方法</button></li>
+                        <li class="material-item rare"><div class="material-icon">🌊</div><span>混沌本源</span><span class="material-quantity">x5</span><button class="get-method-btn" data-material="混沌本源">获取方法</button></li>
                     </ul>
                 </div>
             </div>
@@ -371,4 +472,25 @@
 
     
 </body>
+<script>
+const materialGetMethod = {
+  '玄铁精髓': '可通过秘境探索、斗破寻宝获得。',
+  '百年桃木心': '可通过秘境探索、斗破寻宝获得。',
+  '封妖符': '可通过秘境探索、斗破寻宝获得。',
+  '玄铁镇妖塔': '通过合成获得，或特殊活动奖励。',
+  '地脉灵火': '通过异火抽奖获得。',
+  '赤炎焚天塔': '通过合成获得，或特殊活动奖励。',
+  '星核碎片': '通过拍卖会或限时活动获得。',
+  '虚空精华':'可通过斗破寻宝获得。',
+  '雷霆之心': '可通过斗破寻宝获得。',
+  '混元乾坤塔': '通过合成获得，或特殊活动奖励。',
+};
+document.querySelectorAll('.get-method-btn').forEach(btn => {
+  btn.onclick = function(e) {
+    e.stopPropagation();
+    const name = this.getAttribute('data-material');
+    alert('【' + name + '】获取方法：\n' + (materialGetMethod[name] || '请关注后续活动公告！'));
+  };
+});
+</script>
 </html>
